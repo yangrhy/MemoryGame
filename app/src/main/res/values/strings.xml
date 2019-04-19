@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">QuizGame</string>
     <string name="title">Animal Memory Game</string>
-    <string name="score">Score: </string>
-    <string name="time">Time: </string>
+    <string name="score">Score: 0</string>
+    <string name="time">Time: 0</string>
     <string name="reset">Reset</string>
 
 </resources>
