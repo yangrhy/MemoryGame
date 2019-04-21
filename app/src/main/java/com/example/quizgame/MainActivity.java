@@ -1,46 +1,19 @@
 package com.example.quizgame;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.AssetManager;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private ButtonClickListener bttnClick;
     private List<Integer> myImages;
     private List<Integer> imgsInPlay; // images that will be in play
+    private List<ImageView> imageViewList;
+    private List<Integer> imageViewsToCheck;
     private int numOfFlips = 0;
 
     @Override
@@ -74,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
                  R.drawable.wolf, R.drawable.zebra
                 );
 
+        imageViewList = Arrays.asList
+                (
+                        (ImageView)findViewById(R.id.card1a),(ImageView)findViewById(R.id.card1b), (ImageView)findViewById(R.id.card1c),
+                        (ImageView)findViewById(R.id.card1d),(ImageView)findViewById(R.id.card1e),(ImageView)findViewById(R.id.card2a),
+                        (ImageView)findViewById(R.id.card2b),(ImageView)findViewById(R.id.card2c),(ImageView)findViewById(R.id.card2d),
+                        (ImageView)findViewById(R.id.card2e), (ImageView)findViewById(R.id.card3a), (ImageView)findViewById(R.id.card3b),
+                        (ImageView)findViewById(R.id.card3c),(ImageView)findViewById(R.id.card3d),(ImageView)findViewById(R.id.card3e),
+                        (ImageView)findViewById(R.id.card4a),(ImageView)findViewById(R.id.card4b),(ImageView)findViewById(R.id.card4c),
+                        (ImageView)findViewById(R.id.card4d),(ImageView)findViewById(R.id.card4e)
+                );
+
+        imageViewsToCheck = new ArrayList<Integer>();
 
         StartGame();
 
@@ -111,112 +98,204 @@ public class MainActivity extends AppCompatActivity {
 
         public void onClick (View v)
         {
-            ImageView flippedCard;
-
             switch (v.getId())
             {
                 case R.id.resetBttn:
                     Reset();
                     break;
                 case R.id.card1a:
-                    flippedCard = (ImageView)findViewById(R.id.card1a);
-                    flippedCard.setImageResource(imgsInPlay.get(0));
+                    imageViewList.get(0).setImageResource(imgsInPlay.get(0));
+                    imageViewList.get(0).setTag(imgsInPlay.get(0));
+                    imageViewsToCheck.add(0);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card1b:
-                    flippedCard = (ImageView)findViewById(R.id.card1b);
-                    flippedCard.setImageResource(imgsInPlay.get(1));
+                    imageViewList.get(1).setImageResource(imgsInPlay.get(1));
+                    imageViewList.get(1).setTag(imgsInPlay.get(1));
+                    imageViewsToCheck.add(1);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card1c:
-                    flippedCard = (ImageView)findViewById(R.id.card1c);
-                    flippedCard.setImageResource(imgsInPlay.get(2));
+                    imageViewList.get(2).setImageResource(imgsInPlay.get(2));
+                    imageViewList.get(2).setTag(imgsInPlay.get(2));
+                    imageViewsToCheck.add(2);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card1d:
-                    flippedCard = (ImageView)findViewById(R.id.card1d);
-                    flippedCard.setImageResource(imgsInPlay.get(3));
+                    imageViewList.get(3).setImageResource(imgsInPlay.get(3));
+                    imageViewsToCheck.add(3);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card1e:
-                    flippedCard = (ImageView)findViewById(R.id.card1e);
-                    flippedCard.setImageResource(imgsInPlay.get(4));
+                    imageViewList.get(4).setImageResource(imgsInPlay.get(4));
+                    imageViewsToCheck.add(4);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card2a:
-                    flippedCard = (ImageView)findViewById(R.id.card2a);
-                    flippedCard.setImageResource(imgsInPlay.get(5));
+                    imageViewList.get(5).setImageResource(imgsInPlay.get(5));
+                    imageViewsToCheck.add(5);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card2b:
-                    flippedCard = (ImageView)findViewById(R.id.card2b);
-                    flippedCard.setImageResource(imgsInPlay.get(6));
+                    imageViewList.get(6).setImageResource(imgsInPlay.get(6));
+                    imageViewsToCheck.add(6);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card2c:
-                    flippedCard = (ImageView)findViewById(R.id.card2c);
-                    flippedCard.setImageResource(imgsInPlay.get(7));
+                    imageViewList.get(7).setImageResource(imgsInPlay.get(7));
+                    imageViewsToCheck.add(7);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card2d:
-                    flippedCard = (ImageView)findViewById(R.id.card2d);
-                    flippedCard.setImageResource(imgsInPlay.get(8));
+                    imageViewList.get(8).setImageResource(imgsInPlay.get(8));
+                    imageViewsToCheck.add(8);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card2e:
-                    flippedCard = (ImageView)findViewById(R.id.card2e);
-                    flippedCard.setImageResource(imgsInPlay.get(9));
+                    imageViewList.get(9).setImageResource(imgsInPlay.get(9));
+                    imageViewList.get(9).setTag(imgsInPlay.get(9));
+                    imageViewsToCheck.add(9);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card3a:
-                    flippedCard = (ImageView)findViewById(R.id.card3a);
-                    flippedCard.setImageResource(imgsInPlay.get(10));
+                    imageViewList.get(10).setImageResource(imgsInPlay.get(10));
+                    imageViewList.get(10).setTag(imgsInPlay.get(10));
+                    imageViewsToCheck.add(10);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card3b:
-                    flippedCard = (ImageView)findViewById(R.id.card3b);
-                    flippedCard.setImageResource(imgsInPlay.get(11));
+                    imageViewList.get(11).setImageResource(imgsInPlay.get(11));
+                    imageViewList.get(11).setTag(imgsInPlay.get(11));
+                    imageViewsToCheck.add(11);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card3c:
-                    flippedCard = (ImageView)findViewById(R.id.card3c);
-                    flippedCard.setImageResource(imgsInPlay.get(12));
+                    imageViewList.get(12).setImageResource(imgsInPlay.get(12));
+                    imageViewList.get(12).setTag(imgsInPlay.get(12));
+                    imageViewsToCheck.add(12);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card3d:
-                    flippedCard = (ImageView)findViewById(R.id.card3d);
-                    flippedCard.setImageResource(imgsInPlay.get(13));
+                    imageViewList.get(13).setImageResource(imgsInPlay.get(13));
+                    imageViewList.get(13).setTag(imgsInPlay.get(13));
+                    imageViewsToCheck.add(13);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card3e:
-                    flippedCard = (ImageView)findViewById(R.id.card3e);
-                    flippedCard.setImageResource(imgsInPlay.get(14));
+                    imageViewList.get(14).setImageResource(imgsInPlay.get(14));
+                    imageViewList.get(14).setTag(imgsInPlay.get(14));
+                    imageViewsToCheck.add(14);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card4a:
-                    flippedCard = (ImageView)findViewById(R.id.card4a);
-                    flippedCard.setImageResource(imgsInPlay.get(15));
+                    imageViewList.get(15).setImageResource(imgsInPlay.get(15));
+                    imageViewList.get(15).setTag(imgsInPlay.get(15));
+                    imageViewsToCheck.add(15);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card4b:
-                    flippedCard = (ImageView)findViewById(R.id.card4b);
-                    flippedCard.setImageResource(imgsInPlay.get(16));
+                    imageViewList.get(16).setImageResource(imgsInPlay.get(16));
+                    imageViewList.get(16).setTag(imgsInPlay.get(16));
+                    imageViewsToCheck.add(16);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card4c:
-                    flippedCard = (ImageView)findViewById(R.id.card4c);
-                    flippedCard.setImageResource(imgsInPlay.get(17));
+                    imageViewList.get(17).setImageResource(imgsInPlay.get(17));
+                    imageViewList.get(17).setTag(imgsInPlay.get(17));
+                    imageViewsToCheck.add(17);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card4d:
-                    flippedCard = (ImageView)findViewById(R.id.card4d);
-                    flippedCard.setImageResource(imgsInPlay.get(18));
+                    imageViewList.get(18).setImageResource(imgsInPlay.get(18));
+                    imageViewList.get(18).setTag(imgsInPlay.get(18));
+                    imageViewsToCheck.add(18);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
                 case R.id.card4e:
-                    flippedCard = (ImageView)findViewById(R.id.card4e);
-                    flippedCard.setImageResource(imgsInPlay.get(19));
+                    imageViewList.get(19).setImageResource(imgsInPlay.get(19));
+                    imageViewList.get(19).setTag(imgsInPlay.get(19));
+                    imageViewsToCheck.add(19);
                     numOfFlips += 1;
+                    if (numOfFlips == 2)
+                    {
+                        CheckMatch();
+                    }
                     break;
             }
         }
@@ -227,6 +306,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //this will always start your activity as a new task
         startActivity(intent);
+    }
+
+    private void CheckMatch() {
+        if (imgsInPlay.get(imageViewsToCheck.get(0)) == imgsInPlay.get(imageViewsToCheck.get(1))) {
+            imageViewList.get(imageViewsToCheck.get(0)).setVisibility(View.INVISIBLE);
+            imageViewList.get(imageViewsToCheck.get(1)).setVisibility(View.INVISIBLE);
+        }
+        else {
+            imageViewList.get(imageViewsToCheck.get(0)).setImageResource(R.drawable.back);
+            imageViewList.get(imageViewsToCheck.get(1)).setImageResource(R.drawable.back);
+        }
+
+        imageViewsToCheck.clear();
+        numOfFlips = 0;
     }
 
     private void CheckWin() {
