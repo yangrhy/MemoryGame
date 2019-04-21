@@ -14,6 +14,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private List<ImageView> imageViewList;
     private List<Integer> imageViewsToCheck;
     private int numOfFlips = 0;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         score = (TextView)findViewById(R.id.scoreText);
         time = (TextView)findViewById(R.id.timeText);
         bttnClick = new ButtonClickListener();
+        handler = new Handler(); // used to perform delayed operations
 
         // array of images directed towards drawable by R.drawable
         myImages = Arrays.asList
@@ -98,203 +102,371 @@ public class MainActivity extends AppCompatActivity {
 
         public void onClick (View v)
         {
+            ImageView flippedCard;
+
             switch (v.getId())
             {
                 case R.id.resetBttn:
                     Reset();
                     break;
                 case R.id.card1a:
-                    imageViewList.get(0).setImageResource(imgsInPlay.get(0));
-                    imageViewList.get(0).setTag(imgsInPlay.get(0));
+                    flippedCard = (ImageView)findViewById(R.id.card1a);
+                    flippedCard.setImageResource(imgsInPlay.get(0));
                     imageViewsToCheck.add(0);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card1b:
-                    imageViewList.get(1).setImageResource(imgsInPlay.get(1));
-                    imageViewList.get(1).setTag(imgsInPlay.get(1));
+                    flippedCard = (ImageView)findViewById(R.id.card1b);
+                    flippedCard.setImageResource(imgsInPlay.get(1));
                     imageViewsToCheck.add(1);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card1c:
-                    imageViewList.get(2).setImageResource(imgsInPlay.get(2));
-                    imageViewList.get(2).setTag(imgsInPlay.get(2));
+                    flippedCard = (ImageView)findViewById(R.id.card1c);
+                    flippedCard.setImageResource(imgsInPlay.get(2));
                     imageViewsToCheck.add(2);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card1d:
-                    imageViewList.get(3).setImageResource(imgsInPlay.get(3));
+                    flippedCard = (ImageView)findViewById(R.id.card1d);
+                    flippedCard.setImageResource(imgsInPlay.get(3));
                     imageViewsToCheck.add(3);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card1e:
-                    imageViewList.get(4).setImageResource(imgsInPlay.get(4));
+                    flippedCard = (ImageView)findViewById(R.id.card1e);
+                    flippedCard.setImageResource(imgsInPlay.get(4));
                     imageViewsToCheck.add(4);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card2a:
-                    imageViewList.get(5).setImageResource(imgsInPlay.get(5));
+                    flippedCard = (ImageView)findViewById(R.id.card2a);
+                    flippedCard.setImageResource(imgsInPlay.get(5));
                     imageViewsToCheck.add(5);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card2b:
-                    imageViewList.get(6).setImageResource(imgsInPlay.get(6));
+                    flippedCard = (ImageView)findViewById(R.id.card2b);
+                    flippedCard.setImageResource(imgsInPlay.get(6));
                     imageViewsToCheck.add(6);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card2c:
-                    imageViewList.get(7).setImageResource(imgsInPlay.get(7));
+                    flippedCard = (ImageView)findViewById(R.id.card2c);
+                    flippedCard.setImageResource(imgsInPlay.get(7));
                     imageViewsToCheck.add(7);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card2d:
-                    imageViewList.get(8).setImageResource(imgsInPlay.get(8));
+                    flippedCard = (ImageView)findViewById(R.id.card2d);
+                    flippedCard.setImageResource(imgsInPlay.get(8));
                     imageViewsToCheck.add(8);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card2e:
-                    imageViewList.get(9).setImageResource(imgsInPlay.get(9));
-                    imageViewList.get(9).setTag(imgsInPlay.get(9));
+                    flippedCard = (ImageView)findViewById(R.id.card2e);
+                    flippedCard.setImageResource(imgsInPlay.get(9));
                     imageViewsToCheck.add(9);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card3a:
-                    imageViewList.get(10).setImageResource(imgsInPlay.get(10));
-                    imageViewList.get(10).setTag(imgsInPlay.get(10));
+                    flippedCard = (ImageView)findViewById(R.id.card3a);
+                    flippedCard.setImageResource(imgsInPlay.get(10));
                     imageViewsToCheck.add(10);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card3b:
-                    imageViewList.get(11).setImageResource(imgsInPlay.get(11));
-                    imageViewList.get(11).setTag(imgsInPlay.get(11));
+                    flippedCard = (ImageView)findViewById(R.id.card3b);
+                    flippedCard.setImageResource(imgsInPlay.get(11));
                     imageViewsToCheck.add(11);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card3c:
-                    imageViewList.get(12).setImageResource(imgsInPlay.get(12));
-                    imageViewList.get(12).setTag(imgsInPlay.get(12));
+                    flippedCard = (ImageView)findViewById(R.id.card3c);
+                    flippedCard.setImageResource(imgsInPlay.get(12));
                     imageViewsToCheck.add(12);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card3d:
-                    imageViewList.get(13).setImageResource(imgsInPlay.get(13));
-                    imageViewList.get(13).setTag(imgsInPlay.get(13));
+                    flippedCard = (ImageView)findViewById(R.id.card3d);
+                    flippedCard.setImageResource(imgsInPlay.get(13));
                     imageViewsToCheck.add(13);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card3e:
-                    imageViewList.get(14).setImageResource(imgsInPlay.get(14));
-                    imageViewList.get(14).setTag(imgsInPlay.get(14));
+                    flippedCard = (ImageView)findViewById(R.id.card3e);
+                    flippedCard.setImageResource(imgsInPlay.get(14));
                     imageViewsToCheck.add(14);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card4a:
-                    imageViewList.get(15).setImageResource(imgsInPlay.get(15));
-                    imageViewList.get(15).setTag(imgsInPlay.get(15));
+                    flippedCard = (ImageView)findViewById(R.id.card4a);
+                    flippedCard.setImageResource(imgsInPlay.get(15));
                     imageViewsToCheck.add(15);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card4b:
-                    imageViewList.get(16).setImageResource(imgsInPlay.get(16));
-                    imageViewList.get(16).setTag(imgsInPlay.get(16));
+                    flippedCard = (ImageView)findViewById(R.id.card4b);
+                    flippedCard.setImageResource(imgsInPlay.get(16));
                     imageViewsToCheck.add(16);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card4c:
-                    imageViewList.get(17).setImageResource(imgsInPlay.get(17));
-                    imageViewList.get(17).setTag(imgsInPlay.get(17));
+                    flippedCard = (ImageView)findViewById(R.id.card4c);
+                    flippedCard.setImageResource(imgsInPlay.get(17));
                     imageViewsToCheck.add(17);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card4d:
-                    imageViewList.get(18).setImageResource(imgsInPlay.get(18));
-                    imageViewList.get(18).setTag(imgsInPlay.get(18));
+                    flippedCard = (ImageView)findViewById(R.id.card4d);
+                    flippedCard.setImageResource(imgsInPlay.get(18));
                     imageViewsToCheck.add(18);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
                 case R.id.card4e:
-                    imageViewList.get(19).setImageResource(imgsInPlay.get(19));
-                    imageViewList.get(19).setTag(imgsInPlay.get(19));
+                    flippedCard = (ImageView)findViewById(R.id.card4e);
+                    flippedCard.setImageResource(imgsInPlay.get(19));
                     imageViewsToCheck.add(19);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
                     {
-                        CheckMatch();
+                        handler.postDelayed(
+                                new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        CheckMatch();
+                                    }
+                                }, 1000); // 1000 milliseconds for 1-second delay
                     }
                     break;
             }
