@@ -7,6 +7,7 @@ import android.os.Bundle;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -35,8 +36,11 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,20 +48,32 @@ public class MainActivity extends AppCompatActivity {
     private TextView score, time;
     private Button reset;
     private ButtonClickListener bttnClick;
-    private List<String> animalPathList; // list of all animal image paths
-    private List<Drawable> animalPics; // list of animal images
-    private int[] randArray = new int[10]; // array of int
+    private List<Integer> myImages;
+    private List<Integer> imgsInPlay; // images that will be in play
     private int numOfFlips = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        animalPathList = new ArrayList<String>();
-        animalPics = new ArrayList<Drawable>(); // list of animal images
+        imgsInPlay = new ArrayList<Integer>();
         score = (TextView)findViewById(R.id.scoreText);
         time = (TextView)findViewById(R.id.timeText);
         bttnClick = new ButtonClickListener();
+
+        // array of images directed towards drawable by R.drawable
+        myImages = Arrays.asList
+                (R.drawable.alligator, R.drawable.armadillo, R.drawable.bear, R.drawable.bee, R.drawable.cat,
+                 R.drawable.chicken, R.drawable.cow, R.drawable.deer, R.drawable.dog, R.drawable.duck,
+                 R.drawable.elephant, R.drawable.frog, R.drawable.giraffe, R.drawable.horse, R.drawable.kangaroo,
+                 R.drawable.lion, R.drawable.monkey, R.drawable.mouse, R.drawable.octopus, R.drawable.owl,
+                 R.drawable.panda, R.drawable.parrot, R.drawable.peacock, R.drawable.penguin, R.drawable.pig,
+                 R.drawable.rabbit, R.drawable.raccoon, R.drawable.shark, R.drawable.sheep, R.drawable.skunk,
+                 R.drawable.snake, R.drawable.squirrel, R.drawable.tiger, R.drawable.turtle, R.drawable.whale,
+                 R.drawable.wolf, R.drawable.zebra
+                );
+
 
         StartGame();
 
@@ -78,45 +94,25 @@ public class MainActivity extends AppCompatActivity {
 
     // on start up, get images for cards ready
     private void StartGame() {
-        AssetManager assets = getAssets();
-        List<String> imgsInPlay = new ArrayList<String>();
-        try {
-            String[] images = assets.list("");
-            for (String path: images) {
-                animalPathList.add(path);
-            }
-        }
-        catch (IOException e) {
-            Log.e(TAG, "Error loading image file names", e);
+
+        Collections.shuffle(myImages);
+
+        for (int i = 0; i < 10; i++) {
+            int ref = myImages.get(i);
+            imgsInPlay.add(ref);
+            imgsInPlay.add(ref);
         }
 
-        // shuffle animalPathList to get different images each game
-        Collections.shuffle(animalPathList);
-
-        int i = 0;
-        // There are 20 cards, so add the same image twice into list so there is a pair
-        while (i < 10) {
-            for (String path: animalPathList) {
-                imgsInPlay.add(path);
-                imgsInPlay.add(path);
-                i++;
-            }
-        }
-
-        // shuffle images in play
         Collections.shuffle(imgsInPlay);
-
-        for (String path:imgsInPlay)
-        {
-            animalPics.add(Drawable.createFromPath(path));
-        }
     }
 
     private class ButtonClickListener implements OnClickListener
     {
+
         public void onClick (View v)
         {
             ImageView flippedCard;
+
             switch (v.getId())
             {
                 case R.id.resetBttn:
@@ -124,26 +120,103 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card1a:
                     flippedCard = (ImageView)findViewById(R.id.card1a);
-                    flippedCard.setImageDrawable(animalPics.get(0));
+                    flippedCard.setImageResource(imgsInPlay.get(0));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card1b:
+                    flippedCard = (ImageView)findViewById(R.id.card1b);
+                    flippedCard.setImageResource(imgsInPlay.get(1));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card1c:
+                    flippedCard = (ImageView)findViewById(R.id.card1c);
+                    flippedCard.setImageResource(imgsInPlay.get(2));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card1d:
+                    flippedCard = (ImageView)findViewById(R.id.card1d);
+                    flippedCard.setImageResource(imgsInPlay.get(3));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card1e:
+                    flippedCard = (ImageView)findViewById(R.id.card1e);
+                    flippedCard.setImageResource(imgsInPlay.get(4));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card2a:
+                    flippedCard = (ImageView)findViewById(R.id.card2a);
+                    flippedCard.setImageResource(imgsInPlay.get(5));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card2b:
+                    flippedCard = (ImageView)findViewById(R.id.card2b);
+                    flippedCard.setImageResource(imgsInPlay.get(6));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card2c:
+                    flippedCard = (ImageView)findViewById(R.id.card2c);
+                    flippedCard.setImageResource(imgsInPlay.get(7));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card2d:
+                    flippedCard = (ImageView)findViewById(R.id.card2d);
+                    flippedCard.setImageResource(imgsInPlay.get(8));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card2e:
+                    flippedCard = (ImageView)findViewById(R.id.card2e);
+                    flippedCard.setImageResource(imgsInPlay.get(9));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card3a:
+                    flippedCard = (ImageView)findViewById(R.id.card3a);
+                    flippedCard.setImageResource(imgsInPlay.get(10));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card3b:
+                    flippedCard = (ImageView)findViewById(R.id.card3b);
+                    flippedCard.setImageResource(imgsInPlay.get(11));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card3c:
+                    flippedCard = (ImageView)findViewById(R.id.card3c);
+                    flippedCard.setImageResource(imgsInPlay.get(12));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card3d:
+                    flippedCard = (ImageView)findViewById(R.id.card3d);
+                    flippedCard.setImageResource(imgsInPlay.get(13));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card3e:
+                    flippedCard = (ImageView)findViewById(R.id.card3e);
+                    flippedCard.setImageResource(imgsInPlay.get(14));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card4a:
+                    flippedCard = (ImageView)findViewById(R.id.card4a);
+                    flippedCard.setImageResource(imgsInPlay.get(15));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card4b:
+                    flippedCard = (ImageView)findViewById(R.id.card4b);
+                    flippedCard.setImageResource(imgsInPlay.get(16));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card4c:
+                    flippedCard = (ImageView)findViewById(R.id.card4c);
+                    flippedCard.setImageResource(imgsInPlay.get(17));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card4d:
+                    flippedCard = (ImageView)findViewById(R.id.card4d);
+                    flippedCard.setImageResource(imgsInPlay.get(18));
+                    numOfFlips += 1;
+                    break;
                 case R.id.card4e:
+                    flippedCard = (ImageView)findViewById(R.id.card4e);
+                    flippedCard.setImageResource(imgsInPlay.get(19));
+                    numOfFlips += 1;
                     break;
             }
         }
@@ -156,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // when clicked show card in array according to position
+    private void CheckWin() {
 
+    }
 }
