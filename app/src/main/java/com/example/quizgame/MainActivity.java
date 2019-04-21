@@ -1,6 +1,7 @@
 package com.example.quizgame;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -86,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
     // on start up, get images for cards ready
     private void StartGame() {
 
+        for (ImageView iv: imageViewList) {
+            iv.setImageResource(R.drawable.back);
+        }
         Collections.shuffle(myImages);
 
         for (int i = 0; i < 10; i++) {
@@ -102,16 +106,13 @@ public class MainActivity extends AppCompatActivity {
 
         public void onClick (View v)
         {
-            ImageView flippedCard;
-
             switch (v.getId())
             {
                 case R.id.resetBttn:
                     Reset();
                     break;
                 case R.id.card1a:
-                    flippedCard = (ImageView)findViewById(R.id.card1a);
-                    flippedCard.setImageResource(imgsInPlay.get(0));
+                    imageViewList.get(0).setImageResource(imgsInPlay.get(0));
                     imageViewsToCheck.add(0);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -128,8 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card1b:
-                    flippedCard = (ImageView)findViewById(R.id.card1b);
-                    flippedCard.setImageResource(imgsInPlay.get(1));
+                    imageViewList.get(1).setImageResource(imgsInPlay.get(1));
                     imageViewsToCheck.add(1);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -146,8 +146,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card1c:
-                    flippedCard = (ImageView)findViewById(R.id.card1c);
-                    flippedCard.setImageResource(imgsInPlay.get(2));
+                    imageViewList.get(2).setImageResource(imgsInPlay.get(2));
                     imageViewsToCheck.add(2);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -164,8 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card1d:
-                    flippedCard = (ImageView)findViewById(R.id.card1d);
-                    flippedCard.setImageResource(imgsInPlay.get(3));
+                    imageViewList.get(3).setImageResource(imgsInPlay.get(3));
                     imageViewsToCheck.add(3);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -182,8 +180,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card1e:
-                    flippedCard = (ImageView)findViewById(R.id.card1e);
-                    flippedCard.setImageResource(imgsInPlay.get(4));
+                    imageViewList.get(4).setImageResource(imgsInPlay.get(4));
                     imageViewsToCheck.add(4);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -200,8 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card2a:
-                    flippedCard = (ImageView)findViewById(R.id.card2a);
-                    flippedCard.setImageResource(imgsInPlay.get(5));
+                    imageViewList.get(5).setImageResource(imgsInPlay.get(5));
                     imageViewsToCheck.add(5);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -218,8 +214,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card2b:
-                    flippedCard = (ImageView)findViewById(R.id.card2b);
-                    flippedCard.setImageResource(imgsInPlay.get(6));
+                    imageViewList.get(6).setImageResource(imgsInPlay.get(6));
                     imageViewsToCheck.add(6);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -236,8 +231,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card2c:
-                    flippedCard = (ImageView)findViewById(R.id.card2c);
-                    flippedCard.setImageResource(imgsInPlay.get(7));
+                    imageViewList.get(7).setImageResource(imgsInPlay.get(7));
                     imageViewsToCheck.add(7);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -254,8 +248,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card2d:
-                    flippedCard = (ImageView)findViewById(R.id.card2d);
-                    flippedCard.setImageResource(imgsInPlay.get(8));
+                    imageViewList.get(8).setImageResource(imgsInPlay.get(8));
                     imageViewsToCheck.add(8);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -272,8 +265,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card2e:
-                    flippedCard = (ImageView)findViewById(R.id.card2e);
-                    flippedCard.setImageResource(imgsInPlay.get(9));
+                    imageViewList.get(9).setImageResource(imgsInPlay.get(9));
                     imageViewsToCheck.add(9);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -290,8 +282,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card3a:
-                    flippedCard = (ImageView)findViewById(R.id.card3a);
-                    flippedCard.setImageResource(imgsInPlay.get(10));
+                    imageViewList.get(10).setImageResource(imgsInPlay.get(10));
                     imageViewsToCheck.add(10);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -308,8 +299,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card3b:
-                    flippedCard = (ImageView)findViewById(R.id.card3b);
-                    flippedCard.setImageResource(imgsInPlay.get(11));
+                    imageViewList.get(11).setImageResource(imgsInPlay.get(11));
                     imageViewsToCheck.add(11);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -326,8 +316,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card3c:
-                    flippedCard = (ImageView)findViewById(R.id.card3c);
-                    flippedCard.setImageResource(imgsInPlay.get(12));
+                    imageViewList.get(12).setImageResource(imgsInPlay.get(12));
                     imageViewsToCheck.add(12);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -344,8 +333,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card3d:
-                    flippedCard = (ImageView)findViewById(R.id.card3d);
-                    flippedCard.setImageResource(imgsInPlay.get(13));
+                    imageViewList.get(13).setImageResource(imgsInPlay.get(13));
                     imageViewsToCheck.add(13);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -362,8 +350,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card3e:
-                    flippedCard = (ImageView)findViewById(R.id.card3e);
-                    flippedCard.setImageResource(imgsInPlay.get(14));
+                    imageViewList.get(14).setImageResource(imgsInPlay.get(14));
                     imageViewsToCheck.add(14);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -380,8 +367,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card4a:
-                    flippedCard = (ImageView)findViewById(R.id.card4a);
-                    flippedCard.setImageResource(imgsInPlay.get(15));
+                    imageViewList.get(15).setImageResource(imgsInPlay.get(15));
                     imageViewsToCheck.add(15);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -398,8 +384,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card4b:
-                    flippedCard = (ImageView)findViewById(R.id.card4b);
-                    flippedCard.setImageResource(imgsInPlay.get(16));
+                    imageViewList.get(16).setImageResource(imgsInPlay.get(16));
                     imageViewsToCheck.add(16);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -416,8 +401,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card4c:
-                    flippedCard = (ImageView)findViewById(R.id.card4c);
-                    flippedCard.setImageResource(imgsInPlay.get(17));
+                    imageViewList.get(17).setImageResource(imgsInPlay.get(17));
                     imageViewsToCheck.add(17);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -434,8 +418,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card4d:
-                    flippedCard = (ImageView)findViewById(R.id.card4d);
-                    flippedCard.setImageResource(imgsInPlay.get(18));
+                    imageViewList.get(18).setImageResource(imgsInPlay.get(18));
                     imageViewsToCheck.add(18);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -452,8 +435,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.card4e:
-                    flippedCard = (ImageView)findViewById(R.id.card4e);
-                    flippedCard.setImageResource(imgsInPlay.get(19));
+                    imageViewList.get(19).setImageResource(imgsInPlay.get(19));
                     imageViewsToCheck.add(19);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -481,9 +463,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void CheckMatch() {
+        time.setText(imgsInPlay.get(imageViewsToCheck.get(0)));
+        score.setText(imgsInPlay.get(imageViewsToCheck.get(1)));
+
         if (imgsInPlay.get(imageViewsToCheck.get(0)) == imgsInPlay.get(imageViewsToCheck.get(1))) {
             imageViewList.get(imageViewsToCheck.get(0)).setVisibility(View.INVISIBLE);
             imageViewList.get(imageViewsToCheck.get(1)).setVisibility(View.INVISIBLE);
+            CheckWin();
         }
         else {
             imageViewList.get(imageViewsToCheck.get(0)).setImageResource(R.drawable.back);
@@ -495,6 +481,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void CheckWin() {
+        boolean gameOver = false;
+        for (ImageView iv:imageViewList) {
+            if (iv.getVisibility() == View.INVISIBLE) {
+                gameOver = true;
+            }
+            else {
+                gameOver = false;
+            }
+        }
 
+        if (gameOver == true) {
+            //AlertDialog alertDialog = new AlertDialog.Builder();
+
+        }
     }
 }
