@@ -466,7 +466,10 @@ public class MainActivity extends AppCompatActivity {
         time.setText(imgsInPlay.get(imageViewsToCheck.get(0)));
         score.setText(imgsInPlay.get(imageViewsToCheck.get(1)));
 
-        if (imgsInPlay.get(imageViewsToCheck.get(0)) == imgsInPlay.get(imageViewsToCheck.get(1))) {
+        String firstImg = imgsInPlay.get(imageViewsToCheck.get(0)).toString().toLowerCase().trim();
+        String secondImg = imgsInPlay.get(imageViewsToCheck.get(1)).toString().toLowerCase().trim();
+
+        if (firstImg.equals(secondImg)) {
             imageViewList.get(imageViewsToCheck.get(0)).setVisibility(View.INVISIBLE);
             imageViewList.get(imageViewsToCheck.get(1)).setVisibility(View.INVISIBLE);
             CheckWin();
