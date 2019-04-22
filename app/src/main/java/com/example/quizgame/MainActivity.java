@@ -1,7 +1,8 @@
 package com.example.quizgame;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> imageViewsToCheck;
     private int numOfFlips = 0;
     private Handler handler;
+    private int numScore = 0;
+    private int numOfPairs = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -463,15 +466,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void CheckMatch() {
-        time.setText(imgsInPlay.get(imageViewsToCheck.get(0)));
-        score.setText(imgsInPlay.get(imageViewsToCheck.get(1)));
 
-        String firstImg = imgsInPlay.get(imageViewsToCheck.get(0)).toString().toLowerCase().trim();
-        String secondImg = imgsInPlay.get(imageViewsToCheck.get(1)).toString().toLowerCase().trim();
-
-        if (firstImg.equals(secondImg)) {
+        if (imgsInPlay.get(imageViewsToCheck.get(0)).equals(imgsInPlay.get(imageViewsToCheck.get(1)))) {
             imageViewList.get(imageViewsToCheck.get(0)).setVisibility(View.INVISIBLE);
             imageViewList.get(imageViewsToCheck.get(1)).setVisibility(View.INVISIBLE);
+            numScore += 10;
+            score.setText("Score: " + numScore);
+            numOfPairs += 1;
             CheckWin();
         }
         else {
@@ -485,18 +486,82 @@ public class MainActivity extends AppCompatActivity {
 
     private void CheckWin() {
         boolean gameOver = false;
-        for (ImageView iv:imageViewList) {
-            if (iv.getVisibility() == View.INVISIBLE) {
-                gameOver = true;
-            }
-            else {
-                gameOver = false;
-            }
+
+        if (numOfPairs == 10) {
+            gameOver = true;
+        }
+        else {
+            gameOver = false;
         }
 
         if (gameOver == true) {
-            //AlertDialog alertDialog = new AlertDialog.Builder();
-
+            AlertDialog();
         }
+    }
+
+    public void AlertDialog() {
+        // Create the object of
+        // AlertDialog Builder class
+        AlertDialog.Builder builder
+                = new AlertDialog
+                .Builder(MainActivity.this);
+
+        // Set the message show for the Alert time
+        builder.setMessage("Do you want to exit ?");
+
+        // Set Alert Title
+        builder.setTitle("Alert !");
+
+        // Set Cancelable false
+        // for when the user clicks on the outside
+        // the Dialog Box then it will remain show
+        builder.setCancelable(false);
+
+        // Set the positive button with yes name
+        // OnClickListener method is use of
+        // DialogInterface interface.
+
+        builder
+                .setPositiveButton(
+                        "Yes",
+                        new DialogInterface
+                                .OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which)
+                            {
+
+                                // When the user click yes button
+                                // then app will close
+                                finish();
+                            }
+                        });
+
+        // Set the Negative button with No name
+        // OnClickListener method is use
+        // of DialogInterface interface.
+        builder
+                .setNegativeButton(
+                        "No",
+                        new DialogInterface
+                                .OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which)
+                            {
+
+                                // If user click no
+                                // then dialog box is canceled.
+                                dialog.cancel();
+                            }
+                        });
+
+        // Create the Alert dialog
+        AlertDialog alertDialog = builder.create();
+
+        // Show the Alert Dialog box
+        alertDialog.show();
     }
 }
