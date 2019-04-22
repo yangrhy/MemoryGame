@@ -23,7 +23,7 @@ import android.view.animation.AnimationUtils;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Memory Game Activity";
-    private TextView score, time;
+    private TextView score;
     private Button reset;
     private ButtonClickListener bttnClick;
     private List<Integer> myImages;
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
         imgsInPlay = new ArrayList<Integer>();
         score = (TextView)findViewById(R.id.scoreText);
-        time = (TextView)findViewById(R.id.timeText);
         bttnClick = new ButtonClickListener();
         handler = new Handler(); // used to perform delayed operations
 
@@ -124,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card1a:
                     imageViewList.get(0).setImageResource(imgsInPlay.get(0));
+                    imageViewList.get(0).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(0);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card1b:
                     imageViewList.get(1).setImageResource(imgsInPlay.get(1));
+                    imageViewList.get(1).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(1);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -158,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card1c:
                     imageViewList.get(2).setImageResource(imgsInPlay.get(2));
+                    imageViewList.get(2).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(2);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -175,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card1d:
                     imageViewList.get(3).setImageResource(imgsInPlay.get(3));
+                    imageViewList.get(3).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(3);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -192,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card1e:
                     imageViewList.get(4).setImageResource(imgsInPlay.get(4));
+                    imageViewList.get(4).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(4);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -209,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card2a:
                     imageViewList.get(5).setImageResource(imgsInPlay.get(5));
+                    imageViewList.get(5).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(5);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -226,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card2b:
                     imageViewList.get(6).setImageResource(imgsInPlay.get(6));
+                    imageViewList.get(6).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(6);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -243,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card2c:
                     imageViewList.get(7).setImageResource(imgsInPlay.get(7));
+                    imageViewList.get(7).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(7);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -260,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card2d:
                     imageViewList.get(8).setImageResource(imgsInPlay.get(8));
+                    imageViewList.get(8).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(8);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -277,6 +285,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card2e:
                     imageViewList.get(9).setImageResource(imgsInPlay.get(9));
+                    imageViewList.get(9).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(9);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -294,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card3a:
                     imageViewList.get(10).setImageResource(imgsInPlay.get(10));
+                    imageViewList.get(10).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(10);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -311,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card3b:
                     imageViewList.get(11).setImageResource(imgsInPlay.get(11));
+                    imageViewList.get(11).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(11);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -328,6 +339,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card3c:
                     imageViewList.get(12).setImageResource(imgsInPlay.get(12));
+                    imageViewList.get(12).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(12);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -345,6 +357,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card3d:
                     imageViewList.get(13).setImageResource(imgsInPlay.get(13));
+                    imageViewList.get(13).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(13);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -362,6 +375,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card3e:
                     imageViewList.get(14).setImageResource(imgsInPlay.get(14));
+                    imageViewList.get(14).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(14);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -379,6 +393,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card4a:
                     imageViewList.get(15).setImageResource(imgsInPlay.get(15));
+                    imageViewList.get(15).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(15);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -396,6 +411,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card4b:
                     imageViewList.get(16).setImageResource(imgsInPlay.get(16));
+                    imageViewList.get(16).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(16);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -413,6 +429,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card4c:
                     imageViewList.get(17).setImageResource(imgsInPlay.get(17));
+                    imageViewList.get(17).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(17);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -430,6 +447,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card4d:
                     imageViewList.get(18).setImageResource(imgsInPlay.get(18));
+                    imageViewList.get(18).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(18);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -447,6 +465,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.card4e:
                     imageViewList.get(19).setImageResource(imgsInPlay.get(19));
+                    imageViewList.get(19).setEnabled(false); //disable click on same imageview
                     imageViewsToCheck.add(19);
                     numOfFlips += 1;
                     if (numOfFlips == 2)
@@ -478,8 +497,6 @@ public class MainActivity extends AppCompatActivity {
         if (imgsInPlay.get(imageViewsToCheck.get(0)).equals(imgsInPlay.get(imageViewsToCheck.get(1)))) {
             imageViewList.get(imageViewsToCheck.get(0)).setVisibility(View.INVISIBLE);
             imageViewList.get(imageViewsToCheck.get(1)).setVisibility(View.INVISIBLE);
-            imageViewList.get(imageViewsToCheck.get(0)).setEnabled(false);
-            imageViewList.get(imageViewsToCheck.get(1)).setEnabled(false);
             imageViewList.get(imageViewsToCheck.get(0)).startAnimation(shakeAnimation);
             imageViewList.get(imageViewsToCheck.get(1)).startAnimation(shakeAnimation);
 
@@ -491,6 +508,8 @@ public class MainActivity extends AppCompatActivity {
         else {
             imageViewList.get(imageViewsToCheck.get(0)).setImageResource(R.drawable.back);
             imageViewList.get(imageViewsToCheck.get(1)).setImageResource(R.drawable.back);
+            imageViewList.get(imageViewsToCheck.get(0)).setEnabled(true);
+            imageViewList.get(imageViewsToCheck.get(1)).setEnabled(true);
         }
 
         imageViewsToCheck.clear();
@@ -520,19 +539,12 @@ public class MainActivity extends AppCompatActivity {
                 .Builder(MainActivity.this);
 
         // Set the message show for the Alert time
-        builder.setMessage("Do you want to exit ?");
+        builder.setMessage("Do you want to play again?");
 
         // Set Alert Title
-        builder.setTitle("Alert !");
+        builder.setTitle("You won!");
 
-        // Set Cancelable false
-        // for when the user clicks on the outside
-        // the Dialog Box then it will remain show
         builder.setCancelable(false);
-
-        // Set the positive button with yes name
-        // OnClickListener method is use of
-        // DialogInterface interface.
 
         builder
                 .setPositiveButton(
@@ -546,8 +558,7 @@ public class MainActivity extends AppCompatActivity {
                             {
 
                                 // When the user click yes button
-                                // then app will close
-                                finish();
+                                Reset();
                             }
                         });
 
