@@ -16,8 +16,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler;
     private int numScore = 0;
     private int numOfPairs = 0;
+    private Animation shakeAnimation; // animation for incorrect guess
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         time = (TextView)findViewById(R.id.timeText);
         bttnClick = new ButtonClickListener();
         handler = new Handler(); // used to perform delayed operations
+
+        // load the shake animation that's used for incorrect answers
+        shakeAnimation =
+                AnimationUtils.loadAnimation(this, R.anim.correct_pair);
+        shakeAnimation.setRepeatCount(3); // animation repeats 3 times
 
         // array of images directed towards drawable by R.drawable
         myImages = Arrays.asList
@@ -470,6 +478,11 @@ public class MainActivity extends AppCompatActivity {
         if (imgsInPlay.get(imageViewsToCheck.get(0)).equals(imgsInPlay.get(imageViewsToCheck.get(1)))) {
             imageViewList.get(imageViewsToCheck.get(0)).setVisibility(View.INVISIBLE);
             imageViewList.get(imageViewsToCheck.get(1)).setVisibility(View.INVISIBLE);
+            imageViewList.get(imageViewsToCheck.get(0)).setEnabled(false);
+            imageViewList.get(imageViewsToCheck.get(1)).setEnabled(false);
+            imageViewList.get(imageViewsToCheck.get(0)).startAnimation(shakeAnimation);
+            imageViewList.get(imageViewsToCheck.get(1)).startAnimation(shakeAnimation);
+
             numScore += 10;
             score.setText("Score: " + numScore);
             numOfPairs += 1;
